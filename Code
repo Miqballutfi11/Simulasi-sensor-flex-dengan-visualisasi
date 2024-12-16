@@ -1,0 +1,39 @@
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+#include <vector>
+using namespace std;
+
+// Fungsi untuk menghasilkan nilai simulasi sensor flex
+vector<int> generateSensorData(int jumlah_jari) {
+    vector<int> sensorData;
+    for (int i = 0; i < jumlah_jari; i++) {
+        sensorData.push_back(rand() % 100 + 1); // Nilai antara 1 - 100
+    }
+    return sensorData;
+}
+
+// Fungsi untuk menampilkan visualisasi nilai sensor dalam bentuk bar
+void displaySensorData(const vector<int>& data) {
+    cout << "\nVisualisasi Data Sensor Flex:\n";
+    for (size_t i = 0; i < data.size(); i++) {
+        cout << "Jari " << i + 1 << ": ";
+        for (int j = 0; j < data[i] / 2; j++) { // Skala tampilan
+            cout << "|";
+        }
+        cout << " (" << data[i] << ")\n";
+    }
+}
+
+int main() {
+    srand(time(0)); // Seed random generator
+    int jumlah_jari = 5;
+
+    cout << "=== Simulasi Pembacaan Sensor Flex ===\n";
+    vector<int> sensorData = generateSensorData(jumlah_jari);
+
+    // Menampilkan data dan visualisasi
+    displaySensorData(sensorData);
+
+    return 0;
+}
